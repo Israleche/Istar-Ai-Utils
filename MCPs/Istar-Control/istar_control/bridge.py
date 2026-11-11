@@ -32,6 +32,7 @@ ACTIONS = {
     "move",
     "scroll",
     "drag",
+    "uia",
     "browser",
 }
 # Only allowlisted operation names may be published, so arbitrary user text
