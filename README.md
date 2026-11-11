@@ -35,3 +35,4 @@ The MCP server command uses absolute paths, so they must be updated if the repos
 - Every component keeps its own tests and documentation.
 - Public surfaces are English: tool descriptions, plugin copy, and READMEs.
 - Security-sensitive behaviour (physical input, capture, subprocess execution) is implemented in the component itself rather than delegated to shell commands.
+- CI runs the MCP server tests (ruff + pytest on Windows) and the plugin checks (tsc + node --test on Ubuntu) on pushes to `main`/`master`; see `.github/workflows/ci.yml`.
