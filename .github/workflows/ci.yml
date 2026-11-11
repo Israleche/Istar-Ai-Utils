@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  istar-control:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: MCPs/Istar-Control
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: uv sync --extra test --extra wgc
+
+      - name: Compile check
+        run: uv run python -m compileall -q istar_control
+
+      - name: Lint (ruff)
+        run: uvx ruff check .
+
+      - name: Tests
+        run: uv run --extra test --extra wgc python -m pytest -q
+
+  istar-control-panel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Plugins/istar-control-panel
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Tests
+        run: npm test

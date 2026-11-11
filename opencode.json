@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "skills": ["./Skills"],
+  "plugins": [
+    {
+      "package": "./Plugins/istar-control-panel"
+    }
+  ],
+  "mcp": {
+    "servers": {
+      "istar-control": {
+        "type": "local",
+        "command": ["S:\\Proyectos\\Istar-Ai-Utils\\MCPs\\Istar-Control\\.venv\\Scripts\\python.exe", "-m", "istar_control.server"],
+        "cwd": "S:/Proyectos/Istar-Ai-Utils/MCPs/Istar-Control",
+        "codemode": true
+      }
+    }
+  }
+}

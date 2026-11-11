@@ -1,0 +1,38 @@
+[project]
+name = "istar-control"
+version = "0.1.0"
+description = "Local desktop and browser control MCP for OpenCode"
+requires-python = ">=3.11"
+dependencies = [
+  "mcp==1.30.0",
+  "Pillow>=11,<13",
+  "playwright>=1.55,<2",
+  "comtypes==1.4.17 ; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2"]
+wgc = [
+  "windows-capture==2.0.1 ; sys_platform == 'win32'",
+]
+
+[project.scripts]
+istar-control = "istar_control.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["istar_control"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]
