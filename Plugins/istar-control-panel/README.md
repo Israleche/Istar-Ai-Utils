@@ -25,16 +25,9 @@ The server part is already enabled for this repository:
 }
 ```
 
-The TUI part is loaded by the terminal client from `cli.json`, not from `opencode.json`:
+The TUI part is loaded automatically by the terminal client from the plugins declared in `opencode.json` (a `./tui` entrypoint is picked up automatically for this plugin). Do **not** also add it to `cli.json`: the same package declared in both places can collide, and the server-connected client loads the server plugin list instead.
 
-```jsonc
-// ~/.config/opencode/cli.json
-{
-  "plugins": [{ "package": "S:/Proyectos/Istar-Ai-Utils/Plugins/istar-control-panel" }],
-}
-```
-
-Remove the entry to disable it.
+Once the TUI starts, it will show the activity footer and expose the `istar-control.activity.toggle` (`Ctrl+Alt+I`) and `istar-control.activity.status` commands. Until the first real TUI launch, the live render of this part remains unverified in this project.
 
 ## Call the RPC directly
 
